@@ -9,16 +9,14 @@ const saltRounds = process.env.SALT_ROUNDS;
 router.post('/register', async (req, res) => {
 	const password = req.body.password;
 	if (!password) {
-		console.log('No empty passwords');
 		res.json({
 			status: 'error',
 			error: 'No empty passwords',
 		});
 	} else if (password.length < 6) {
-		console.log('Password needs to have at least 6 characters');
 		res.json({
 			status: 'error',
-			error: 'No empty passwords',
+			error: 'Password needs to have at least 6 characters',
 		});
 	} else {
 		try {
@@ -32,7 +30,6 @@ router.post('/register', async (req, res) => {
 
 					await newUser.save((error, newUserResults) => {
 						if (!error) {
-							console.log('Created New User');
 							res.send({
 								status: 'ok',
 							});
@@ -81,6 +78,25 @@ router.post('/login', async (req, res) => {
 		res.json({
 			status: 'error',
 			error: 'Wrong email or password',
+		});
+	}
+});
+
+router.post('/getWebsitesData', async (req, res) => {
+	const Users = Schemas.Users;
+	const _email = req.body.email;
+
+	try {
+		await Users.findOne({ email: _email }).then(foundUser => {
+			res.json({
+				status: 'ok',
+				websites: [foundUser.websites],
+			});
+		});
+	} catch (err) {
+		res.json({
+			status: 'error',
+			error: 'No user found',
 		});
 	}
 });

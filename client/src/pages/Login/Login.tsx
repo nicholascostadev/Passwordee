@@ -1,9 +1,24 @@
 import axios from 'axios';
-import { useState } from 'react';
-import Navbar from '../../Navbar/Navbar';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../../components/Navbar/Navbar';
 import './Login.css';
 
 function Login() {
+	const [token, setToken] = useState<string | null>();
+	let navigate = useNavigate();
+
+	useEffect(() => {
+		const _token = localStorage.getItem('token');
+		setToken(_token);
+		if (token) {
+			navigate('/dashboard');
+			console.log('No token', token);
+		} else {
+			return;
+		}
+	}, [token, navigate]);
+
 	interface User {
 		email: string;
 		password: string;

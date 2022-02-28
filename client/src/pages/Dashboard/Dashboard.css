@@ -1,0 +1,30 @@
+.dashboard {
+	display: flex;
+	flex-direction: column;
+}
+
+.dashboard__content {
+	padding: 0 10%;
+	margin-top: 1rem;
+}
+
+.websiteData {
+	max-height: 500px;
+	border-radius: 10px;
+	-webkit-box-shadow: 5px 5px 16px -4px #000000;
+	box-shadow: 5px 5px 16px -4px #000000;
+	padding: 5rem 2rem;
+}
+
+.websiteImage {
+	width: 50%;
+}
+
+.dashboard__content > div {
+	margin-top: 5rem;
+	display: grid;
+	gap: 1rem 10rem;
+	justify-content: center;
+	align-content: center;
+	grid-template-columns: repeat(3, 1fr);
+}

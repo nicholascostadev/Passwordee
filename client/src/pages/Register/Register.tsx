@@ -1,9 +1,23 @@
 import './Register.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Navbar from '../../Navbar/Navbar';
+import Navbar from '../../components/Navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const Register: React.FC = () => {
+	const [token, setToken] = useState<string | null>();
+	let navigate = useNavigate();
+
+	useEffect(() => {
+		const _token = localStorage.getItem('token');
+		setToken(_token);
+		if (token === null) {
+			return;
+		} else if (token) {
+			navigate('/dashboard');
+		}
+	}, [token, navigate]);
+
 	interface User {
 		email: string;
 		password: string;
@@ -66,7 +80,6 @@ const Register: React.FC = () => {
 					<button className="register__button" type="submit">
 						Submit
 					</button>
-				
 				</form>
 			</div>
 		</div>
