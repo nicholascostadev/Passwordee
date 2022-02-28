@@ -1,0 +1,14 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: sticky;
+	width: 100%;
+	height: 100px;
+	padding: 0 25%;
+	background-color: #4700e6;
+}
+
+.navbar > p {
+	cursor: pointer;
+}
