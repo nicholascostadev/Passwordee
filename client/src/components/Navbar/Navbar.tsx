@@ -38,7 +38,9 @@ function Navbar(): JSX.Element {
 
 	return (
 		<div className="navbar">
-			<h1 className="brand">PasWordee</h1>
+			<h1 className="brand" onClick={() => navigate('/')}>
+				PasWordee
+			</h1>
 			<div className="navbar__content">
 				{user ? (
 					<div>

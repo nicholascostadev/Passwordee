@@ -10,6 +10,10 @@
 	color: #fff;
 }
 
+.brand {
+	cursor: pointer;
+}
+
 .navbar__content {
 	display: flex;
 	justify-content: center;
@@ -22,4 +26,9 @@
 
 .navbar__content > div > * {
 	margin: 0 2rem;
+	border: none;
+	background-color: transparent;
+	color: #fff;
+	font-size: 1.25rem;
+	cursor: pointer;
 }

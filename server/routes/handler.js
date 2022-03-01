@@ -101,4 +101,26 @@ router.post('/getWebsitesData', async (req, res) => {
 	}
 });
 
+router.post('/saveNewWebsite', async (req, res) => {
+	const Users = Schemas.Users;
+	if (req.body) {
+		Users.findOne({ email: req.body.email }).then(foundUser => {
+			if (foundUser) {
+				//TODO: find a way to save new websites inside the user schema
+				//TODO: make closing button more beautiful(round circle around)
+			} else {
+				res.json({
+					status: 'error',
+					error: 'No User found, token not valid',
+				});
+			}
+		});
+	} else {
+		res.json({
+			status: 'error',
+			error: "Couldn't save",
+		});
+	}
+});
+
 module.exports = router;

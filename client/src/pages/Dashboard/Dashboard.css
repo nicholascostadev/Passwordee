@@ -1,6 +1,7 @@
 .dashboard {
 	display: flex;
 	flex-direction: column;
+	min-height: 100vh;
 }
 
 .dashboard__content {
@@ -8,23 +9,87 @@
 	margin-top: 1rem;
 }
 
-.websiteData {
-	max-height: 500px;
-	border-radius: 10px;
-	-webkit-box-shadow: 5px 5px 16px -4px #000000;
-	box-shadow: 5px 5px 16px -4px #000000;
-	padding: 5rem 2rem;
-}
-
-.websiteImage {
-	width: 50%;
-}
-
 .dashboard__content > div {
 	margin-top: 5rem;
 	display: grid;
-	gap: 1rem 10rem;
+	gap: 3rem 5rem;
 	justify-content: center;
 	align-content: center;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.addWebsite {
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 10px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.blurredBackground {
+	position: absolute;
+	width: 100%;
+	height: 300vh;
+	overflow-y: hidden;
+	background-color: #ddd;
+	opacity: 0.94;
+	z-index: 1;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.addWebsiteForm {
+	z-index: 2;
+	border-radius: 10px;
+	background-color: rgb(243, 243, 243);
+	webkit-box-shadow: 5px 5px 16px -4px #000000;
+	box-shadow: 5px 5px 16px -4px #000000;
+	max-width: 600px;
+	position: absolute;
+	align-self: center;
+	justify-self: center;
+	padding: 5rem 2rem;
+	top: 25%;
+	left: 33%;
+}
+
+.addWebsiteForm > h1 {
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.addWebsiteForm > input {
+	width: 100%;
+	padding: 0.5rem 1rem;
+	margin: 0.5rem 0;
+}
+
+.closeIcon {
+	position: absolute;
+	top: 15%;
+	right: 15%;
+	display: block;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.closeIcon.hide {
+	display: none;
+}
+
+.formInput {
+	outline: none;
+}
+
+.websiteFormSubmitButton {
+	border: none;
+	padding: 0.8rem 1rem;
+	width: 100%;
+	cursor: pointer;
+	background-color: rgb(77, 77, 77);
+	color: #fff;
+	margin-top: 1rem;
+	font-size: 1.25rem;
 }
