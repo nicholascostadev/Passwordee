@@ -1,0 +1,61 @@
+.websiteData {
+	max-height: 500px;
+	border-radius: 10px;
+	-webkit-box-shadow: 5px 5px 16px -4px #000000;
+	box-shadow: 5px 5px 16px -4px #000000;
+	padding: 5rem 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.websiteData > div > .websitePassword {
+	width: 100%;
+	font-size: 1.25rem;
+	padding: 0.2rem 0.5rem;
+}
+.websiteData > div > input[type='checkbox'] {
+	position: absolute;
+	height: 1rem;
+	width: 1rem;
+	top: 0.65rem;
+	right: 5px;
+}
+
+.websiteData > div > input[type='checkbox']:active {
+}
+
+.websiteImage {
+	width: 50%;
+	margin-bottom: 1rem;
+}
+
+.input__container {
+	position: relative;
+	width: 100%;
+	display: flex;
+}
+
+.copyButton {
+	position: absolute;
+	right: 1.5rem;
+	top: 0.65rem;
+	background-color: #fff;
+	border: none;
+	cursor: pointer;
+	z-index: 1;
+}
+.websiteEmail {
+	outline: none;
+	width: 100%;
+	padding: 0.2rem 0.5rem;
+	font-size: 1.25rem;
+}
+.email__container {
+	position: relative;
+	width: 100%;
+	margin-bottom: 0.5rem;
+}
+.websiteImage > .email__container .websiteEmail {
+}

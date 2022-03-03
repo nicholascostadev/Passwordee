@@ -1,18 +1,18 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../../Interfaces';
 import Navbar from '../../components/Navbar/Navbar';
 import './Dashboard.css';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
-import Website from '../../components/Websites/Website';
-import CloseIcon from '@mui/icons-material/Close';
+import Website from '../../components/Website/Website';
 
 function Dashboard() {
 	interface Website {
 		name: string;
 		password: string;
 		index: number;
+		email: string;
 	}
 
 	interface Websites extends Array<Website> {}
@@ -27,7 +27,6 @@ function Dashboard() {
 		email: string;
 		password: string;
 	}>({ name: '', url: '', email: '', password: '' });
-	console.log(websites);
 	let navigate = useNavigate();
 
 	useEffect(() => {
@@ -46,8 +45,6 @@ function Dashboard() {
 					setWebsites(response.data.websites[0]);
 				}
 			});
-		} else {
-			console.log('NO user');
 		}
 	}, [user]);
 
@@ -66,7 +63,6 @@ function Dashboard() {
 
 	const handleAddWebsite = async (e: any) => {
 		e.preventDefault();
-
 		try {
 			await axios({
 				method: 'POST',
@@ -76,7 +72,8 @@ function Dashboard() {
 				if (response.data.status === 'error') {
 					alert(response.data.error);
 				} else {
-					console.log(response.data);
+					setNewWebsite({ name: '', url: '', email: '', password: '' });
+					navigate('/');
 				}
 			});
 		} catch (err) {
@@ -96,12 +93,12 @@ function Dashboard() {
 					<div>
 						{websites &&
 							websites.map((website: Website, index: number) => {
-								console.log(website);
 								return (
 									<Website
 										websiteName={website.name}
 										websitePassword={website.password}
-										key={index}
+										websiteEmail={website.email}
+										key={index * 5}
 										index={index}
 									/>
 								);
@@ -111,6 +108,19 @@ function Dashboard() {
 						<>
 							<form onSubmit={handleAddWebsite} className="addWebsiteForm">
 								<h1>Save a new Website</h1>
+								<label style={{ fontWeight: 'bold' }}>
+									Choose your image
+									<em style={{ fontWeight: 'normal' }}>
+										(If you don't have one, don't worry, we will try to find an
+										adequate one).
+									</em>
+								</label>
+								<input
+									className="newWebsiteImage"
+									type="file"
+									accept="image/png, image/jpeg"
+								/>
+
 								<label>Name</label>
 								<input
 									type="text"
@@ -119,15 +129,20 @@ function Dashboard() {
 									onChange={e =>
 										setNewWebsite({ ...newWebsite, name: e.target.value })
 									}
+									required
+									value={newWebsite.name}
 								/>
 								<label>URL</label>
 								<input
 									type="url"
 									className="formInput"
-									placeholder="https://website.com"
+									placeholder="website.com"
+									pattern="https://[A-Za-z]+[A-Za-z0-9\.-]*"
 									onChange={e =>
 										setNewWebsite({ ...newWebsite, url: e.target.value })
 									}
+									value={newWebsite.url}
+									required
 								/>
 								<label>Email</label>
 								<input
@@ -137,6 +152,8 @@ function Dashboard() {
 									onChange={e =>
 										setNewWebsite({ ...newWebsite, email: e.target.value })
 									}
+									required
+									value={newWebsite.email}
 								/>
 								<label>Password</label>
 								<input
@@ -146,6 +163,8 @@ function Dashboard() {
 									onChange={e =>
 										setNewWebsite({ ...newWebsite, password: e.target.value })
 									}
+									required
+									value={newWebsite.password}
 								/>
 								<button type="submit" className="websiteFormSubmitButton">
 									Save
@@ -153,13 +172,14 @@ function Dashboard() {
 							</form>
 						</>
 					) : null}
-					{/* boxes with image and name of website. email and password(initially hidden) */}
 				</div>
 			)}
 
-			{user && create ? <div className="blurredBackground"></div> : null}
 			{user && create ? (
-				<CloseIcon className="closeIcon" onClick={() => setCreate(false)} />
+				<div
+					className="blurredBackground"
+					onClick={() => setCreate(false)}
+				></div>
 			) : null}
 		</div>
 	);

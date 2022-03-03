@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { setTokenSourceMapRange } from 'typescript';
 import Navbar from '../../components/Navbar/Navbar';
 import jwt_decode from 'jwt-decode';
 import './Settings.css';
@@ -24,7 +23,9 @@ function Settings() {
 	return (
 		<div className="settings">
 			<Navbar />
-			<div className="settings_sidebar"></div>
+			<div className="settings_sidebar">
+				<p>Profile</p>
+			</div>
 		</div>
 	);
 }

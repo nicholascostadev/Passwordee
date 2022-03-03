@@ -104,23 +104,42 @@ router.post('/getWebsitesData', async (req, res) => {
 router.post('/saveNewWebsite', async (req, res) => {
 	const Users = Schemas.Users;
 	if (req.body) {
-		Users.findOne({ email: req.body.email }).then(foundUser => {
-			if (foundUser) {
-				//TODO: find a way to save new websites inside the user schema
-				//TODO: make closing button more beautiful(round circle around)
-			} else {
-				res.json({
-					status: 'error',
-					error: 'No User found, token not valid',
-				});
-			}
-		});
+		const decodedToken = jwt.decode(req.body.token);
+		try {
+			await Users.findOneAndUpdate(
+				{ email: decodedToken.email, _id: decodedToken.id },
+				{ $push: { websites: req.body.newWebsite } }
+			);
+			res.json({
+				status: 'ok',
+				data: 'Saved new website',
+			});
+		} catch (err) {
+			res.json({
+				status: 'error',
+				error: 'This error:' + err,
+			});
+		}
 	} else {
 		res.json({
 			status: 'error',
 			error: "Couldn't save",
 		});
 	}
+});
+
+router.post('/showWebsitePassword', (req, res) => {
+	const Users = Schemas.Users;
+
+	const decodedToken = jwt.decode(req.body.token);
+
+	Users.findOne({ email: decodedToken.email, _id: decodedToken.id }).then(
+		foundUser => {
+			foundUser.websites.password;
+		}
+	);
+
+	const password = req.body._password;
 });
 
 module.exports = router;
