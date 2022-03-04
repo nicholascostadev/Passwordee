@@ -30,7 +30,7 @@ If you don't have Yarn installed, run `npm install --global yarn`.
 
 If you don't know what yarn is, you can checkout this [documentation](https://classic.yarnpkg.com/en/ "Yarn's documentation") from them.
 
-You'll also need to create on the `client` folder, a .env file with the variables needed for the Web App to work:
+You'll also need to create on the `server` folder, a .env file with the variables needed for the Web App to work:
 ```env
 DB_URI = "String" # String that links to your MongoDB Database
 JWT_SECRET = "String" # A long string that is also unique for making your JWT token unique
