@@ -95,6 +95,7 @@ function Dashboard() {
 					console.log(response.data.error);
 				} else {
 					console.log(response.data.data);
+					navigate('/');
 				}
 			});
 		} catch (err) {
@@ -126,7 +127,7 @@ function Dashboard() {
 								);
 							})}
 					</div>
-					{create ? (
+					{create && (
 						<>
 							<form onSubmit={handleAddWebsite} className="addWebsiteForm">
 								<h1>Save a new Website</h1>
@@ -193,7 +194,7 @@ function Dashboard() {
 								</button>
 							</form>
 						</>
-					) : null}
+					)}
 				</div>
 			)}
 
