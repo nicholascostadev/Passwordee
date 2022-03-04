@@ -13,7 +13,7 @@ I've learned many things in this project, and I'm gonna list it here:
 2. Express folder structuring
     * Creating a models folder that will hold the Schemas and export the model.
 4. Mongoose functions
-    * Inside the method `findOneAndUpdate()`, using `$push:{websites: req.body.newWebsite}` to push a new object inside the websites array(defined on the Schemas).
+    * Inside the method `findOneAndUpdate()`, using `$push:{ websites: req.body.newWebsite}` to push a new object inside the websites array(defined on the Schemas) or `$push:{ websites: { email: req.body.data.email, name: req.body.data.websiteName}}` to pull the exact object the user is trying to delete.
     * Learned how to handle user inputs by narrowing down common errors like user entering no password for registration or passwords with not enough characters by sanitizing on the BackEnd.
 6. Axios API Calls
     * Making POST requests with data so that the BackEnd can identify if the user is logged and if he is able to do anything, being able to GET, POST and DELETE.
