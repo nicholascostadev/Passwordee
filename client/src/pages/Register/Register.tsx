@@ -38,7 +38,7 @@ const Register: React.FC = () => {
 			data: user,
 		}).then(response => {
 			if (response.data.status === 'ok') {
-				return;
+				alert('User successfully registered');
 			} else {
 				alert(response.data.error);
 			}

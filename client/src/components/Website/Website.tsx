@@ -1,18 +1,20 @@
 import './Website.css';
 import { useState } from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { v4 as uuidv4 } from 'uuid';
+import ClearIcon from '@mui/icons-material/Clear';
 
 function Website({
 	websitePassword,
 	websiteName,
 	index,
 	websiteEmail,
+	deleteFunction,
 }: {
 	websitePassword: string;
 	websiteName: string;
 	index: number;
 	websiteEmail: string;
+	deleteFunction: (websiteEmail: string, websiteName: string) => void;
 }): JSX.Element {
 	const [visible, setVisible] = useState<boolean>(false);
 
@@ -48,6 +50,13 @@ function Website({
 				src="https://files.tecnoblog.net/wp-content/uploads/2021/10/logotipo-da-empresa-amazon.png"
 				alt="amazon-logo"
 			/>
+			<button
+				className="deleteWebsiteButton"
+				id={index.toString()}
+				onClick={(e: any) => deleteFunction(websiteEmail, websiteName)}
+			>
+				<ClearIcon />
+			</button>
 			<div className="email__container">
 				<input
 					className="websiteEmail"
@@ -55,18 +64,9 @@ function Website({
 					value={websiteEmail}
 					readOnly
 					key={index}
-					id={index.toString()}
 				/>
-				<button
-					onClick={copyEmail}
-					className="copyButton"
-					id={index.toString()}
-				>
-					<ContentCopyIcon
-						className="copyIcon"
-						sx={{ fontSize: 'medium' }}
-						id={index.toString()}
-					/>
+				<button onClick={copyEmail} className="copyButton">
+					<ContentCopyIcon className="copyIcon" sx={{ fontSize: 'medium' }} />
 				</button>
 			</div>
 			<div className="input__container">
@@ -76,18 +76,9 @@ function Website({
 					value={websitePassword}
 					readOnly
 					key={index}
-					id={index.toString()}
 				/>
-				<button
-					onClick={copyPassword}
-					className="copyButton"
-					id={index.toString()}
-				>
-					<ContentCopyIcon
-						className="copyIcon"
-						sx={{ fontSize: 'medium' }}
-						id={index.toString()}
-					/>
+				<button onClick={copyPassword} className="copyButton">
+					<ContentCopyIcon className="copyIcon" sx={{ fontSize: 'medium' }} />
 				</button>
 				<input type="checkbox" onClick={() => setVisible(!visible)} />
 			</div>

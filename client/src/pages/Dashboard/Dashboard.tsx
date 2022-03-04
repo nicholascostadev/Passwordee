@@ -81,6 +81,27 @@ function Dashboard() {
 		}
 	};
 
+	const deleteFunction = async (websiteEmail: string, websiteName: string) => {
+		try {
+			await axios({
+				method: 'DELETE',
+				url: 'http://localhost:5000/deleteWebsite',
+				data: {
+					token: localStorage.getItem('token'),
+					data: { email: websiteEmail, websiteName: websiteName },
+				},
+			}).then(response => {
+				if (response.data.status === 'error') {
+					console.log(response.data.error);
+				} else {
+					console.log(response.data.data);
+				}
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<div className="dashboard">
 			<Navbar />
@@ -100,6 +121,7 @@ function Dashboard() {
 										websiteEmail={website.email}
 										key={index * 5}
 										index={index}
+										deleteFunction={deleteFunction}
 									/>
 								);
 							})}

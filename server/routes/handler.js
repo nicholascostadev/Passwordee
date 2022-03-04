@@ -128,18 +128,35 @@ router.post('/saveNewWebsite', async (req, res) => {
 	}
 });
 
-router.post('/showWebsitePassword', (req, res) => {
+router.delete('/deleteWebsite', async (req, res) => {
 	const Users = Schemas.Users;
+	const user = jwt.decode(req.body.token);
+	const _email = req.body.data.email;
+	const _name = req.body.data.websiteName;
 
-	const decodedToken = jwt.decode(req.body.token);
-
-	Users.findOne({ email: decodedToken.email, _id: decodedToken.id }).then(
-		foundUser => {
-			foundUser.websites.password;
+	if (req.body) {
+		try {
+			await Users.findOneAndUpdate(
+				{ email: user.email, _id: user.id },
+				{ $pull: { websites: { email: _email, name: _name } } },
+				{ safe: true, multi: true }
+			);
+			res.json({
+				status: 'ok',
+				data: 'Removed',
+			});
+		} catch (err) {
+			res.json({
+				status: 'error',
+				error: 'This error:' + err,
+			});
 		}
-	);
-
-	const password = req.body._password;
+	} else {
+		res.json({
+			status: 'error',
+			error: 'No sufficient data received',
+		});
+	}
 });
 
 module.exports = router;
