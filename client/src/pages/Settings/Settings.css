@@ -1,0 +1,81 @@
+.settings {
+	display: flex;
+}
+
+.settings__sidebar {
+	display: flex;
+	flex-direction: column;
+	background-color: aqua;
+	width: 250px;
+	height: calc(100vh - 100px);
+	padding: 1rem 1rem 0 1rem;
+}
+
+.settings__sidebar > p {
+	font-size: 1.25rem;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin: 1rem 0;
+	cursor: pointer;
+}
+
+.settings__content {
+	width: 100%;
+	height: calc(100vh - 100px);
+	background-color: #fff;
+	padding: 2rem 1rem 2rem 5rem;
+}
+
+.settings__content > h1 {
+	margin-bottom: 2rem;
+}
+
+.profile__change {
+	outline: none;
+	padding: 0.3rem 1rem;
+	border: 1px solid #000;
+	border-radius: 20px;
+	font-size: 1.25rem;
+	margin-bottom: 0.5rem;
+}
+
+.changeUsernameContainer {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10rem;
+}
+
+.changeUsernameForm {
+	display: flex;
+	flex-direction: column;
+}
+
+.changeFullNameForm {
+	display: flex;
+	flex-direction: column;
+}
+
+.changeUsernameForm > label {
+	margin-bottom: 1rem;
+	font-size: 1.25rem;
+}
+
+.changeFullNameForm > label {
+	margin-bottom: 1rem;
+	font-size: 1.25rem;
+}
+
+.changeUsernameForm > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.confirmButton {
+	border: none;
+	border-radius: 50%;
+	margin-left: 0.5rem;
+	height: 30px;
+	width: 30px;
+	cursor: pointer;
+}

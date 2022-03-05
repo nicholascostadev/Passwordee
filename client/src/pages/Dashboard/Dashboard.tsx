@@ -108,7 +108,7 @@ function Dashboard() {
 			<Navbar />
 			{user && (
 				<div className="dashboard__content">
-					<h1>Hello, {user.email}, Welcome back!</h1>
+					<h1>Hello, {user.username || user.email}, Welcome back!</h1>
 					<button className="addWebsite" onClick={() => setCreate(true)}>
 						Add Website
 					</button>

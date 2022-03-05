@@ -82,7 +82,7 @@ function Navbar(): JSX.Element {
 			<div className="navbar__content">
 				{user ? (
 					<div>
-						<p>{user.email}</p>
+						<p>{user.username || user.email}</p>
 						<button onClick={dashboard}>Dashboard</button>
 						<button onClick={settings}>Settings</button>
 						<button onClick={logout}>Logout</button>
@@ -94,14 +94,14 @@ function Navbar(): JSX.Element {
 							<ClearIcon className="closeIcon" />
 						</button>
 						<div className="mobileSidebar hide hidden">
-							<p>{user.email}</p>
+							<p>{user.username || user.email}</p>
 							<button onClick={dashboard}>Dashboard</button>
 							<button onClick={settings}>Settings</button>
 							<button onClick={logout}>Logout</button>
 						</div>
 					</div>
 				) : (
-					<div>
+					<div className="notLoggedIn">
 						<button onClick={login}>Login</button>
 						<button onClick={register}>Register</button>
 					</div>

@@ -69,7 +69,11 @@ router.post('/login', async (req, res) => {
 			bcrypt.compare(_password, foundUser.password, (error, result) => {
 				if (result) {
 					const token = jwt.sign(
-						{ id: foundUser._id, email: foundUser.email },
+						{
+							id: foundUser._id,
+							email: foundUser.email,
+							username: foundUser.username,
+						},
 						process.env.JWT_SECRET
 					);
 					res.json({
@@ -163,6 +167,65 @@ router.delete('/deleteWebsite', async (req, res) => {
 			status: 'error',
 			error: 'No sufficient data received',
 		});
+	}
+});
+
+router.post('/settingsChange', async (req, res) => {
+	const Users = Schemas.Users;
+	const user = jwt.decode(req.body.token);
+	// Handle request for username changing
+
+	if (req.body.data.newUsername) {
+		console.log('received username');
+		try {
+			await Users.findOneAndUpdate(
+				{ email: user.email, _id: user.id },
+				{
+					username: req.body.data.newUsername,
+				}
+			).then(() => {
+				res.json({
+					status: 'ok',
+					data: 'Successfully set new username',
+				});
+			});
+		} catch (err) {
+			if (err.code === 11000) {
+				res.json({
+					status: 'error',
+					error: 'Username already in use',
+				});
+			} else {
+				console.log(err.message);
+				res.json({
+					status: 'error',
+					error: err.message,
+				});
+			}
+		}
+	}
+
+	if (req.body.data.fullName) {
+		console.log('received fullname');
+		try {
+			await Users.findOneAndUpdate(
+				{ email: user.email, _id: user.id },
+				{
+					fullName: req.body.data.fullName,
+				}
+			).then(() => {
+				res.json({
+					status: 'ok',
+					data: "Successfully user's set fullName",
+				});
+			});
+		} catch (err) {
+			console.log(err.message);
+			res.json({
+				status: 'error',
+				error: err.message,
+			});
+		}
 	}
 });
 
