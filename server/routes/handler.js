@@ -18,6 +18,13 @@ router.post('/register', async (req, res) => {
 			status: 'error',
 			error: 'Password needs to have at least 6 characters',
 		});
+	} else if (password.trim().length < 6) {
+		res.json({
+			status: 'error',
+			error: 'Password needs to have at least 6 characters, no spaces',
+		});
+
+		// TODO: See if this code works(checking if there are spaces inside the password)
 	} else {
 		try {
 			bcrypt.genSalt(saltRounds, (err, salt) => {
