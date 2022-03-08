@@ -27,6 +27,7 @@ I've learned many things in this project, and I'm gonna list it here:
     * Created my own logic to see whick input the user is clicking to copy(Most surely there is a way to do it easier)
 7. React Router DOM
     * Created the logic with JWT so that the user has to have a valid token to be able to see the dashboard or access any other page.
+8. Using Joi for Validation of user's registration and login.
 
 # <p name="howToRunLocally">How to run it locally</p>
 
