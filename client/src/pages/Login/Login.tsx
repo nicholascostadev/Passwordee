@@ -32,16 +32,16 @@ function Login() {
 	const handleLogin = async (
 		e: React.ChangeEvent<HTMLFormElement>
 	): Promise<void> => {
-		// post request to Database and saves it inside loggedUser(it only receives now an email)
 		e.preventDefault();
 		await axios({
 			method: 'post',
 			url: 'http://localhost:5000/login',
+			// User data from the form, checked in the back-end
 			data: user,
 		}).then(response => {
 			if (response.data.status === 'ok') {
 				localStorage.setItem('token', response.data.token);
-				document.location.reload();
+				navigate('/login')
 			} else {
 				alert(response.data.error);
 			}

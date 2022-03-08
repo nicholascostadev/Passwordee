@@ -18,6 +18,7 @@ function Website({
 }): JSX.Element {
 	const [visible, setVisible] = useState<boolean>(false);
 
+	// Logic for copying email.
 	const copyEmail = (e: any) => {
 		const emailInputs = document.querySelectorAll('.websiteEmail');
 		console.log(emailInputs);
@@ -30,6 +31,7 @@ function Website({
 		});
 	};
 
+	// Logic copying password.
 	const copyPassword = (e: any) => {
 		const passwordInputs = document.querySelectorAll('.websitePassword');
 		console.log(passwordInputs);

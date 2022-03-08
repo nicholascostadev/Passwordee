@@ -29,7 +29,7 @@ function Navbar(): JSX.Element {
 		localStorage.removeItem('token');
 		setShowMenu(false);
 		setUser(null);
-		window.location.reload();
+		navigate('/login');
 	};
 
 	const [user, setUser] = useState<User | null>(null);
@@ -48,6 +48,8 @@ function Navbar(): JSX.Element {
 	const menuIcon = document.querySelector('.menuIcon');
 
 	useEffect(() => {
+		// Logic for making the sidebar on mobile closed when first entered.
+		// and this logic repeats whenever the user clicks on the hamburger menu.
 		if (showMenu) {
 			mobileSidebar?.classList.remove('hide');
 			mobileSidebar?.classList.remove('hidden');
@@ -82,6 +84,7 @@ function Navbar(): JSX.Element {
 			<div className="navbar__content">
 				{user ? (
 					<div>
+						{/* Prioritize username if user has */}
 						<p>{user.username || user.email}</p>
 						<button onClick={dashboard}>Dashboard</button>
 						<button onClick={settings}>Settings</button>

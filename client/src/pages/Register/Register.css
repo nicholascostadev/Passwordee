@@ -37,7 +37,7 @@
 	padding: 0.5rem 1rem;
 	border: none;
 	background-color: white;
-	border-radius: 10px;
+	border-radius: 5px;
 	margin-bottom: 1rem;
 	outline: none;
 }
@@ -53,6 +53,7 @@
 	color: white;
 	font-size: 1rem;
 	font-weight: bold;
+	margin-top: 1rem;
 }
 
 .register__button:hover {

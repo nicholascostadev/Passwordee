@@ -53,6 +53,16 @@
 	cursor: pointer;
 }
 
+@media (max-width: 900px) {
+	.brand {
+		font-size: 1.75rem;
+	}
+	.navbar__content > div > * {
+		font-size: 1.1rem;
+		margin: 0 1rem;
+	}
+}
+
 @media (max-width: 800px) {
 	.brand {
 		font-size: 1.75rem;

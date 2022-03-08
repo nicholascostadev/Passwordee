@@ -8,9 +8,19 @@ import CheckIcon from '@mui/icons-material/Check';
 import axios from 'axios';
 function Settings() {
 	let navigate = useNavigate();
+
+	// Authentication
 	const [user, setUser] = useState<User | null>();
 	const [token, setToken] = useState<string | null>();
+	
+	// 'current' is going to be set to the page on the 'settings' the user is trying to access
+	// e.g:
+	// user access 'profile' settings, so the 'current' state will be set to 'profile'
+	// and the 'profile' component will be rendered.
+	// It's may not be forever like that, maybe I'll change it later on.
 	const [current, setCurrent] = useState<string | null>('profile');
+
+	// New user's settings on 'profile' settings page.
 	const [newUsername, setNewUsername] = useState<string>('');
 	const [fullName, setFullName] = useState<string>('');
 
@@ -18,7 +28,10 @@ function Settings() {
 		const _token = localStorage.getItem('token');
 		setToken(_token);
 
+		// Same auth logic, if token is null, user has to login again
 		if (token === null) {
+
+			// If user doesn't have a valid token, redirect to login page
 			navigate('/login');
 		} else if (token) {
 			const data: User = jwt_decode(token);
@@ -42,7 +55,12 @@ function Settings() {
 				} else {
 					console.log(response.data.data);
 					setNewUsername('');
-					console.log(newUsername);
+					alert("You'll need to login again");
+					setTimeout(() => {
+						localStorage.removeItem('token');
+						setUser(null);
+						navigate('/login');
+					}, 2000);
 				}
 			});
 		} catch (err) {
